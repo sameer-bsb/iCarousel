@@ -933,6 +933,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
     switch (_type)
     {
         case iCarouselTypeLinear:
+        case iCarouselTypeLinear2:
         {
             //exact number required to fill screen
             CGFloat spacing = [self valueForOption:iCarouselOptionSpacing withDefault:1.0f];
