@@ -486,6 +486,25 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
                 return CATransform3DTranslate(transform, offset * _itemWidth * spacing, 0.0f, 0.0f);
             }
         }
+        case iCarouselTypeLinear2:
+        {
+            CGFloat count = 5;
+            CGFloat spacing = [self valueForOption:iCarouselOptionSpacing withDefault:1.0f];
+            CGFloat arc = [self valueForOption:iCarouselOptionArc withDefault:M_PI * 2.0f];
+            CGFloat radius = [self valueForOption:iCarouselOptionRadius withDefault:fmaxf(_itemWidth * spacing / 2.0f, _itemWidth * spacing / 2.0f / tanf(arc/2.0f/count))];
+            CGFloat angle = [self valueForOption:iCarouselOptionAngle withDefault:offset / count * arc];
+            
+            if (_vertical)
+            {
+                return CATransform3DTranslate(transform, 0.0f, radius * sin(angle), radius * cos(angle) - radius);
+            }
+            else
+            {
+                float MAX_TILT_VALUE = 3.0f;
+                float tilt = MAX_TILT_VALUE * cos(angle); // greater angle means greater vertical offset
+                return CATransform3DTranslate(transform, radius * sin(angle), tilt, radius * cos(angle) - radius);
+            }
+        }
         case iCarouselTypeRotary:
         case iCarouselTypeInvertedRotary:
         {

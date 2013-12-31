@@ -62,6 +62,7 @@ typedef NSView UIView;
 typedef enum
 {
     iCarouselTypeLinear = 0,
+    iCarouselTypeLinear2,
     iCarouselTypeRotary,
     iCarouselTypeInvertedRotary,
     iCarouselTypeCylinder,
